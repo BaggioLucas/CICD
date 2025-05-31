@@ -1,0 +1,5 @@
+#Proyecto y key
+sonar.organization=CICD_project
+sonar.projectKey=BaggioLucas_CICD
+sonar.qualitygate.wait=true
+sonar.language=py
