@@ -29,3 +29,11 @@ jobs:
       - name: Run tests
         run: |
           pytest
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2.3.3
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        with:
+          author_name: "Action"
+          fields: repo,message,commit,author,action,eventName
