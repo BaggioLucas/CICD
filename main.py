@@ -4,6 +4,8 @@ app = FastAPI()
 
 var1 = "Hola Mundo"
 var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
 
 @app.get("/")
 async def root():
