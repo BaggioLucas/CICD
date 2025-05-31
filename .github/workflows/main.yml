@@ -35,7 +35,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.3.3
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CI Bot'
+          SLACK_USERNAME: 'CI Bot ✅'
           SLACK_TITLE: '✅ Pipeline exitoso'
           SLACK_COLOR: success
           SLACK_MESSAGE: 'El pipeline ha finalizado con el estado: ${{ job.status }}'
@@ -46,7 +46,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.3.3
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CI Bot'
+          SLACK_USERNAME: 'CI Bot ❌'
           SLACK_TITLE: '❌ Pipeline fallido'
           SLACK_COLOR: failure
           SLACK_MESSAGE: 'El pipeline ha finalizado con el estado: ${{ job.status }}'
@@ -71,7 +71,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.3.3
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CI Bot'
+          SLACK_USERNAME: 'CI Bot ✅'
           SLACK_TITLE: '✅ Pipeline sonarcloud exitoso'
           SLACK_COLOR: success
           SLACK_MESSAGE: 'El pipeline de sonarcloud ha finalizado con el estado: ${{ job.status }}'
@@ -82,7 +82,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.3.3
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CI Bot'
+          SLACK_USERNAME: 'CI Bot ❌'
           SLACK_TITLE: '❌ Pipeline sonarcloud fallido'
           SLACK_COLOR: failure
           SLACK_MESSAGE: 'El pipeline de sonarcloud ha finalizado con el estado: ${{ job.status }}'
