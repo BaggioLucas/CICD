@@ -39,7 +39,7 @@ jobs:
           SLACK_TITLE: '✅ Pipeline exitoso'
           SLACK_COLOR: success
           SLACK_MESSAGE: 'El pipeline ha finalizado con el estado: ${{ job.status }}'
-          SLACK_ICON_EMOJI: ':whtie_check_mark:'
+          SLACK_ICON_EMOJI: ':white_check_mark:'
         
       - name: Send failure Slack notification
         if: failure()
