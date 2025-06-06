@@ -87,3 +87,37 @@ jobs:
           SLACK_COLOR: failure
           SLACK_MESSAGE: 'El pipeline de sonarcloud ha finalizado con el estado: ${{ job.status }}'
           SLACK_ICON_EMOJI: ':rotating_light:'
+  deploy:
+    needs: [sonarcloud-scan]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Render Deploy Action
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+
+      - name: Send success Slack notification
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.3.3
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: 'CD Bot ✅'
+          SLACK_TITLE: '✅ Despliegue exitoso'
+          SLACK_COLOR: success
+          SLACK_MESSAGE: 'El despliegue ha finalizado con el estado: ${{ job.status }}'
+          SLACK_ICON_EMOJI: ':white_check_mark:'
+        
+      - name: Send failure Slack notification
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.3.3
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: 'CD Bot ❌'
+          SLACK_TITLE: '❌ Despliegue fallido'
+          SLACK_COLOR: failure
+          SLACK_MESSAGE: 'El despliegue ha finalizado con el estado: ${{ job.status }}'
+          SLACK_ICON_EMOJI: ':rotating_light:'
