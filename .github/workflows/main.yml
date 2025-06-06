@@ -100,24 +100,14 @@ jobs:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
 
-      - name: Send success Slack notification
-        if: success()
+      - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2.3.3
+        if: always()
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CD Bot ✅'
-          SLACK_TITLE: '✅ Despliegue exitoso'
-          SLACK_COLOR: success
-          SLACK_MESSAGE: 'El despliegue ha finalizado con el estado: ${{ job.status }}'
-          SLACK_ICON_EMOJI: ':white_check_mark:'
-        
-      - name: Send failure Slack notification
-        if: failure()
-        uses: rtCamp/action-slack-notify@v2.3.3
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: 'CD Bot ❌'
-          SLACK_TITLE: '❌ Despliegue fallido'
-          SLACK_COLOR: failure
-          SLACK_MESSAGE: 'El despliegue ha finalizado con el estado: ${{ job.status }}'
-          SLACK_ICON_EMOJI: ':rotating_light:'
+          SLACK_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_STATUS: ${{ job.status }}
+          SLACK_TITLE: "Deploy: {workflow} has {status_message}"
+          SLACK_MESSAGE: "{emoji} *Deploy: {workflow}* {status_message} in <{repo_url}|{repo}>"
+          SLACK_FOOTER: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+          SLACK_NOTIFY_WHEN: "failure,success"
