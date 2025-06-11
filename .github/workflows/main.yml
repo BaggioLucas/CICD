@@ -104,7 +104,7 @@ jobs:
         run: |
           echo "Esperando que el deploy se estabilice..."
           sleep 15  # opcional: dar tiempo a Render para levantar la app
-          response=$curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com)
           if [ "$response" -ne 200 ]; then
             echo "Error: el deploy no respondió correctamente. Código HTTP: $response"
             exit 1
