@@ -99,15 +99,15 @@ jobs:
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
-
       - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2.3.3
+        uses: ravsamhq/notify-slack-action@2.5.0
         if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} has {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+          notify_when: "failure,success"
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_STATUS: ${{ job.status }}
-          SLACK_TITLE: "Deploy: {workflow} has {status_message}"
-          SLACK_MESSAGE: "{emoji} *Deploy: {workflow}* {status_message} in <{repo_url}|{repo}>"
-          SLACK_FOOTER: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
-          SLACK_NOTIFY_WHEN: "failure,success"
