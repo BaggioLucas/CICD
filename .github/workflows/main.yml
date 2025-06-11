@@ -104,7 +104,7 @@ jobs:
         run: |
           echo "Esperando que el deploy se estabilice..."
           sleep 15  # opcional: dar tiempo a Render para levantar la app
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com)
+          response=$curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com
           if [ "$response" -ne 200 ]; then
             echo "Error: el deploy no respondió correctamente. Código HTTP: $response"
             exit 1
@@ -117,8 +117,8 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          notification_title: "CD pipeline has {status_message}"
+          message_format: "{emoji} *CD pipeline* {status_message} in <{repo_url}|{repo}>"
           footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
           notify_when: "failure,success"
         env:
