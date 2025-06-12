@@ -5,12 +5,14 @@ app = FastAPI()
 var1 = "Hola Mundo"
 var1 = "Hola Mundo"
 var1 = "Hola Mundo"
-#aaaaaaaaa
-#
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
 
-###asdas
-#ccc
-# bbbbbbbbbb
+
 @app.get("/")
 async def root():
     return {"message": var1}
