@@ -117,7 +117,7 @@ jobs:
       - name: Health check of deploy action
         run: |
           echo "Esperando que el deploy se estabilice..."
-          sleep 15  # dar tiempo a Render para levantar la app
+          sleep 25  # dar tiempo a Render para levantar la app
           response=$(curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com)
           if [ "$response" -ne 200 ]; then
             echo "Error: el deploy no respondió correctamente. Código HTTP: $response"
