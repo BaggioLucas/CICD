@@ -3,12 +3,29 @@ from fastapi import FastAPI
 app = FastAPI()
 
 var1 = "Hola Mundo"
-
-a = 'mensaje de prueba'
-
-x = 5
-
-b = 1542
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
+var1 = "Hola Mundo"
 
 @app.get("/")
 async def root():
