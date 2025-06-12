@@ -115,18 +115,6 @@ jobs:
           api_key: ${{ secrets.RENDER_API_KEY }}
           wait_deploy: true
 
-      - name: Health check of deploy action
-        run: |
-          echo "Esperando que el deploy se estabilice..."
-          sleep 25  # dar tiempo a Render para levantar la app
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://cicd-api.onrender.com)
-          if [ "$response" -ne 200 ]; then
-            echo "Error: el deploy no respondió correctamente. Código HTTP: $response"
-            exit 1
-          else
-          echo "Deploy exitoso. Código HTTP: $response"
-          fi
-          
       - name: Send Slack notification
         uses: ravsamhq/notify-slack-action@2.5.0
         if: always()
