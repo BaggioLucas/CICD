@@ -108,12 +108,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
 
-      - name: Render Deploy Action
-        uses: johnbeynon/render-deploy-action@v1
+      - name: Deploy to Render
+        uses: JorgeLNJunior/render-deploy@v1.4.5
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
-          wait-for-success: true
+          wait_deploy: true
 
       - name: Health check of deploy action
         run: |
